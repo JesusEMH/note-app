@@ -4,11 +4,11 @@
 	<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="form-login">
 		<h1>{{title}}</h1>
 
-		<div class="alerta-exito" *ngIf="status == 'success'">
+		<div class="alerta-exito" (click)="statusChange()" *ngIf="status == 'success'">
 			Te has identificado correctamente.
 		</div>
 
-		<div class="alerta-error" *ngIf="status == 'error'">
+		<div class="alerta-error" (click)="statusChange()" *ngIf="status == 'error'">
 			No te has podido identificar correctamente.
 		</div>
 

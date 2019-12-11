@@ -4,11 +4,11 @@
 	<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="form-register">
 		<h1 class="formtitle">{{title}}</h1>
 
-		<div class="alerta-exito" *ngIf="status == 'success'">
-			Registro completado correctamente,
+		<div class="alerta-exito" (click)="statusChange()" *ngIf="status == 'success'">
+			Registro completado correctamente.
 		</div>
 
-		<div class="alerta-error" *ngIf="status == 'error'">
+		<div class="alerta-error" (click)="statusChange()" *ngIf="status == 'error'">
 			El registro no ha podido completarse, puede que tu correo electronico o apodo ya esten en uso.
 		</div>
 		<p>

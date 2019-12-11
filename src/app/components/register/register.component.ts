@@ -38,6 +38,10 @@ export class RegisterComponent implements OnInit{
 		console.log("componente register cargado...");
 	}
 
+	statusChange(){
+		this.status = null;
+	}
+
 	onSubmit(form){
 		console.log(this.user);
 		this._UserService.register(this.user).subscribe(
@@ -58,4 +62,5 @@ export class RegisterComponent implements OnInit{
 
 			);
 	}
+
 }

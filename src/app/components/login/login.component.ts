@@ -59,6 +59,10 @@ export class LoginComponent implements OnInit{
         );
     }
 
+    statusChange(){
+        this.status = null;
+    }
+
     getToken(){
         this._userService.signup(this.user,"true").subscribe(
             response =>{

@@ -20,12 +20,29 @@
 		}
 
 		.alerta-exito{
-			color: green;
-			text-align: center;
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #09d261;
+			color: white;
+			padding: .4em;
+			border-radius: 10px;
+			cursor: pointer;
+
 		}
+
 		.alerta-error{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
+			padding: .4em;
+			border-radius: 10px;
+			cursor: pointer;
 			text-align: center;
-			color: red;
+			color: white;
+			background-color: #f08383;
 		}
 		.submit{
 			display: flex;
