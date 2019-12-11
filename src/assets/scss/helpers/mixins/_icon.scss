@@ -1,0 +1,18 @@
+@mixin icon($image){
+
+	height: 4em;
+	width: 6em;
+	
+
+	@if $image == 'inicio'{
+		background-image: img('icons8-cucha-100.png');
+		transform: scale(.5,.5);
+	}
+	@else if $image == 'nota'{
+		background-image: img('icons8-folleto-encuadernado-en-espiral-48.png');
+		background-repeat: no-repeat;
+		display: flex;
+		align-items: center;
+	}
+	
+}

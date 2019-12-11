@@ -1,0 +1,33 @@
+<div class="mainform">
+	
+
+	<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="form-login">
+		<h1>{{title}}</h1>
+
+		<div class="alerta-exito" *ngIf="status == 'success'">
+			Te has identificado correctamente.
+		</div>
+
+		<div class="alerta-error" *ngIf="status == 'error'">
+			No te has podido identificar correctamente.
+		</div>
+
+		<p>
+			<label>CORREO ELECTRONICO</label>
+			<input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="input" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+			<span *ngIf="!email.valid && email.touched">
+				El correo es obligatorio!
+			</span>
+		</p>
+
+		<p>
+			<label>PASSWORD</label>
+			<input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" class="input" required />
+			<span *ngIf="!password.valid && password.touched">
+				El password es obligatorio!
+			</span>
+		</p>
+		<input class="submit" type="submit" value="{{title}}" [disabled]="!registerForm.form.valid">
+		
+	</form>
+</div>

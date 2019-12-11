@@ -1,0 +1,20 @@
+/*MIXINS*/
+/*FUNCTIONS*/
+@import './helpers/functions/get-image';
+/*HELPERS*/
+@import './helpers/mixins/nav';
+@import './helpers/mixins/icon';
+@import './helpers/mixins/form';
+@import './helpers/variables';
+/*LAYOUT*/
+@import './layout/header';
+@import './layout/reset';
+@import './layout/main';
+/*TEMPLATES*/
+/*COMPONENTES*/
+@import './components/inputs';
+/*PAGINAS*/
+@import './pages/login';
+@import './pages/register';
+@import './pages/home';
+@import './pages/notes';

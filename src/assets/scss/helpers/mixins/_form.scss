@@ -1,0 +1,33 @@
+@mixin form($type){
+
+	@if $type == 'login'{
+
+		width: 30em;
+		font-family: arial;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr;
+		grid-gap: 1em;
+
+	}
+	@else if $type == "register"{
+
+		width: 30em;
+		font-family: arial;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+		grid-gap: 1em;
+
+	}
+	@else if $type == "notes"{
+
+		width: 30em;
+		font-family: arial;
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: .3f 1fr 2em;
+		grid-gap: 1em;
+
+	}
+}

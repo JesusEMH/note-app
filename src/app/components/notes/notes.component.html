@@ -1,0 +1,51 @@
+<div class="mainNotes">
+
+	<div class="success" *ngIf="status == 'success'" >nota guardada correctamente</div>
+	
+
+	<div class="title-container">
+		<div class="success" *ngIf="status == 'error'" (click)="alert()" >nota guardada!</div>
+		<h1 class="title-notes">ESCRIBE UNA NOTA! </h1>
+	</div>
+	<div class="form-container">
+
+		<form #newNoteForm="ngForm" class="form-notes" (ngSubmit)="onSubmit(newNoteForm)">
+			<p>
+				<label>titulo de la nota </label>
+				<input  type="text" name="title" #text="ngModel" [(ngModel)]="note.title" required />
+			</p>
+
+			<p>
+				<label>escribe lo que quieras</label>
+				<textarea class="textarea" name="text" #text="ngModel" [(ngModel)]="note.text" required></textarea>
+				<span *ngIf="!text.valid && text.touched" >
+					El texto de la nota es obligatorio
+				</span>
+			</p>
+
+			<input class="submit" type="submit" value="ENVIAR" [disabled]="!newNoteForm.form.valid">
+			<div class="basura"></div>
+		</form>
+	</div>
+
+	<div class="notas-div">
+		<h1 class="subtitle-notes">MIS NOTAS!</h1>
+		<div class="notas-scroll">
+			<p *ngIf="nohay" >{{nohay}}</p>
+
+			<div class="nota"  *ngFor="let nota of notas">
+				<h3>{{nota.title}}</h3>
+				<p>{{nota.text}}</p>
+				<span>{{nota.created_at  | amTimeAgo }}</span>
+				
+			</div>
+		</div>
+		<div class="boton-note">
+			<button (click)="viewMore()" *ngIf="!noMore" >
+				ver mas notas!
+			</button>
+		</div>
+	
+	</div>
+
+</div>

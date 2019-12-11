@@ -1,0 +1,23 @@
+@mixin nav($type){
+
+
+	@if $type == 'true'{
+        	display: grid;
+                align-items: center;
+                grid-template-columns: 1fr .4fr;
+                grid-template-rows: 1fr;
+                grid-gap: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+                
+
+        	}
+	@else if $type == 'false'{
+        	display: grid;
+                grid-template-columns: 1fr .4fr;
+                grid-template-rows: 1fr;
+                grid-gap: 1em;
+                padding-left: 2em;
+                padding-right: 2em;
+        	}
+}
