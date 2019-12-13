@@ -1,0 +1,49 @@
+<div class="mainform">
+	
+
+	<form #UpdateUserForm="ngForm" (ngSubmit)="onSubmit(UpdateUserForm)" class="form-register">
+		<h1 class="formtitle">{{title}}</h1>
+
+		<div class="alerta-exito" (click)="statusChange()" *ngIf="status == 'success'">
+			Usuario actualizado correctamente.
+		</div>
+
+		<div class="alerta-error" (click)="statusChange()" *ngIf="status == 'error'">
+			Tu apodo o correo nuevos pueden ya estar en uso!
+		</div>
+		<p>
+			<label>NOMBRE</label>
+			<input type="text" name="name" placeholder="{{user.name}}" #name="ngModel" [(ngModel)]="user.name" class="input" required />
+			<span *ngIf="!name.valid && name.touched">
+				El nombre es obligatorio!
+			</span>
+		</p>
+
+		<p>
+			<label>APELLIDOS</label>
+			<input type="text" name="surname" placeholder="{{user.surname}}" #surname="ngModel" [(ngModel)]="user.surname" class="input" required />
+			<span *ngIf="!surname.valid && surname.touched">
+				Los apellidos son obligatorio!
+			</span>
+		</p>
+
+		<p>
+			<label>APODO</label>
+			<input type="text" name="nick" placeholder="{{user.nick}}" #nick="ngModel" [(ngModel)]="user.nick" class="input"  required/>
+			<span *ngIf="!nick.valid && nick.touched">
+				El apodo es obligatorio!
+			</span>
+		</p>
+
+		<p>
+			<label>CORREO ELECTRONICO</label>
+			<input type="email" name="email" placeholder="{{user.email}}" #email="ngModel" [(ngModel)]="user.email" class="input" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+			<span *ngIf="!email.valid && email.touched">
+				El correo es obligatorio!
+			</span>
+		</p>
+
+		<input class="submit" type="submit" value="{{title}}" [disabled]="!UpdateUserForm.form.valid">
+		
+	</form>
+</div>

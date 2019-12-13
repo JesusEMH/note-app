@@ -21,12 +21,20 @@ export class NotesComponent implements OnInit, DoCheck{
 	public status: string;
 	public statusok: string;
 	public note: Note;
+	public noteUpdated: Note;
 	public page;
 	public total;
 	public pages;
 	public notas: Note[];
 	public itemsPerPage;
+	public showForm;
+	public statusDelete;
+	public editForm;
+	public statusUpdate;
 	
+	public editTitle;
+	public editText;
+	public editId;
 
 	constructor(
 		private _noteService: NoteService,
@@ -40,15 +48,21 @@ export class NotesComponent implements OnInit, DoCheck{
 			this.stats = this._userService.getStats();
 			this.page = 1;
 			this.note = new Note("","","","","",this.identity._id);
+			this.noteUpdated = new Note("","","","","",this.identity._id);
+			this.showForm = false;
 
 	}
 
 	ngOnInit(){
 		console.log("componente Notes cargado");
 		this.getNotes(this.page);
+		this.noteUpdated = new Note("","","","","",this.identity._id);
 	}
 	ngDoCheck(){
-		this.notas;
+		//this.getNotes(this.page);
+		//this.notas;
+		//console.log(this.editId);
+		//console.log(this.noteUpdated);
 	}
 
 	onSubmit(form){
@@ -57,10 +71,11 @@ export class NotesComponent implements OnInit, DoCheck{
 		this._noteService.addNote(this.token, this.note).subscribe(
 			response => {
 				console.log(response);
-				if(response.notes){
-					//this.note = response.note;
+				if(response.nota){
+					//this.note = response.nota;
 					this.status = 'success';
 					form.reset();
+					this._router.navigate(['/loading']);
 				}else{
 					this.status = 'error';
 					form.reset();
@@ -103,6 +118,8 @@ export class NotesComponent implements OnInit, DoCheck{
 					}
 
 					if(page > this.pages){
+						this._router.navigate(['/loading']);
+						
 						
 					}
 				}else{
@@ -127,13 +144,81 @@ export class NotesComponent implements OnInit, DoCheck{
 
 	public noMore = false;
 	viewMore(){
-		if(this.notas.length == (this.total-this.itemsPerPage)){
+		if(this.notas.length == this.total){
 			this.noMore = true;
 
 		}else{
 			this.page += 1;
 		}
 		this.getNotes(this.page, true);
+	}
+
+	viewForm(){
+		
+		this.showForm = true;
+		
+	}
+	hideForm(){
+		this.showForm = false;
+	}
+
+	refresh(page, adding){
+		this.getNotes(page, adding=false);
+	}
+
+	clickDelete(){
+		this.statusDelete = false;
+	}
+
+	deleteNote(id){
+		this._noteService.deleteNote(this.token, id).subscribe(
+			response =>{
+				this.refresh(1,false);
+				this.statusDelete = true;
+			},error =>{
+				console.log(<any>error);
+			}
+		);
+	}
+	editNote(id, title, text){
+		this.showForm = false;
+		this.editForm = true;
+
+		this.editTitle = title;
+		this.editText = text;
+		this.editId = id;
+		this.noteUpdated = new Note(this.editId,"","","","",this.identity._id);
+
+	}
+
+
+	updateNote(form){
+		console.log(this.editId);
+		console.log(this.noteUpdated);
+		this._noteService.updateNote(this.noteUpdated).subscribe(
+			response =>{
+				console.log(response);
+
+				if(response.note){
+					//this.note = response.nota;
+					this.statusUpdate;
+					
+					this.refresh(1,false);
+				}else{
+					this.statusUpdate = null;
+					
+				}
+			},error =>{
+				console.log(<any>error);
+			}
+		);
+	}
+
+	hideEditForm(){
+		this.editForm = false;
+		this.editText = null;
+		this.editTitle = null;
+		this.editId = null;
 	}
 }
 

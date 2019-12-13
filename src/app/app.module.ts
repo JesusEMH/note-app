@@ -11,6 +11,8 @@ import {HomeComponent} from './components/home/home.component';
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from './components/register/register.component';
 import {NotesComponent} from './components/notes/notes.component';
+import {LoadingComponent} from './components/loading/loading.component';
+import {UserEditComponent} from './components/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {NotesComponent} from './components/notes/notes.component';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    NotesComponent
+    NotesComponent,
+    LoadingComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
